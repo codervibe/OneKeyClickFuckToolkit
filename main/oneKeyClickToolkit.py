@@ -49,7 +49,7 @@ def perform_scan_and_select_satellite():
         simulate_progress_bar("", 630)  # 进度条显示 "扫描地址"
 
         # 模拟扫描结果
-        available_addresses = [f"192.168.1.{i}" for i in range(1, 31)]
+        available_addresses = [f"192.168.1.{i}" for i in range(1, 255)]
         print("找到可用地址, 按回车键显示地址列表，或等待 3 秒自动继续。")
 
         # 等待用户按回车或 3 秒后继续
