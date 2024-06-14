@@ -1,34 +1,31 @@
-import random
-import threading
+import os
 import time
-from queue import Queue, Empty
-
 from tabulate import tabulate
-
+from pywifi import PyWiFi, const, Profile
+from tqdm import tqdm
+from wifi_cracker import crack_wifi, scan_wifi, connect_to_wifi, select_interface
 
 def print_menu():
     """
-	打印选择菜单.
-	"""
-
+    打印选择菜单.
+    """
     print("\n请选择一个操作:")
     print("1. 一键日卫星")
     print("2. 一键日服务器")
     print("3. 一键破解wifi")
     print("0. 退出")
 
-
 def perform_action(choice):
     """
-	根据用户选择执行相应的操作.
-	"""
+    根据用户选择执行相应的操作.
+    """
     try:
         if choice == '1':
             perform_scan_and_select_satellite()
         elif choice == '2':
             perform_daily_server()
         elif choice == '3':
-            perform_crack_wifi()
+            crack_wifi_main()
         elif choice == '0':
             print("退出程序.")
             exit()
@@ -38,15 +35,14 @@ def perform_action(choice):
         print("\n程序被用户中断.")
         exit()
 
-
 def perform_scan_and_select_satellite():
     """
-	执行扫描地址并选择卫星.
-	"""
+    执行扫描地址并选择卫星.
+    """
     try:
         # 执行扫描地址
         print("扫描当前可用的地址...")
-        simulate_progress_bar("", 630)  # 进度条显示 "扫描地址"
+        simulate_progress_bar("扫描地址", 630)
 
         # 模拟扫描结果
         available_addresses = [f"192.168.1.{i}" for i in range(1, 255)]
@@ -63,61 +59,55 @@ def perform_scan_and_select_satellite():
 
         # 自动选择可用卫星
         print("自动选择可用的卫星...")
-        simulate_progress_bar("", 530)  # 进度条显示 "选择卫星"
+        simulate_progress_bar("选择卫星", 530)
 
         # 模拟选择的卫星
         selected_satellite = random.choice(available_addresses)
-        print(f"已选择卫星地址")
+        print(f"已选择卫星地址: {selected_satellite}")
 
         # 正在尝试生成字典
         print("正在尝试生成字典...")
-        simulate_progress_bar("", 130, pause_at=89, pause_duration=20)
+        simulate_progress_bar("生成字典", 130, pause_at=89, pause_duration=20)
 
         # 正在尝试破解控制系统密码
-        print("正在尝试破解控制系统密码")
-        simulate_progress_bar("", 30)
+        print("正在尝试破解控制系统密码...")
+        simulate_progress_bar("破解控制系统密码", 30)
 
         # 尝试破解控制系统
         print("正在尝试破解控制系统...")
-        simulate_progress_bar("", 399, pause_at=175, pause_duration=30)  # 进度条显示 "破解控制系统"
+        simulate_progress_bar("破解控制系统", 399, pause_at=175, pause_duration=30)
         print("操作完成!\n")
 
     except KeyboardInterrupt:
         print("\n程序被用户中断.")
         exit()
 
-
 def perform_daily_server():
     """
-	执行一键日服务器.
-	"""
-
+    执行一键日服务器.
+    """
     try:
         print("正在执行一键日服务器...")
-        simulate_progress_bar("", 89)
+        simulate_progress_bar("一键日服务器", 89)
         print("一键日服务器完成!\n")
     except KeyboardInterrupt:
         print("\n程序被中断.")
         exit()
 
-
-def perform_crack_wifi():
+def crack_wifi_main():
     """
-	执行一键破解wifi.
-	"""
+    执行一键破解wifi.
+    """
     try:
-        print("正在执行一键破解wifi...")
-        simulate_progress_bar("", 20)
-        print("一键破解wifi完成!\n")
+        crack_wifi()
     except KeyboardInterrupt:
         print("\n程序被中断.")
         exit()
 
-
 def simulate_progress_bar(action, steps, length=50, fill='█', pause_at=None, pause_duration=0):
     """
-	模拟进度条的过程.
-	"""
+    模拟进度条的过程.
+    """
     try:
         for i in range(steps + 1):
             percent = ("{0:.1f}").format(100 * (i / float(steps)))
@@ -135,22 +125,10 @@ def simulate_progress_bar(action, steps, length=50, fill='█', pause_at=None, p
         print("\n操作被中断.")
         exit()
 
-
-def input_with_timeout(queue):
-    """
-	等待用户输入，将输入结果放入队列.
-	"""
-    try:
-        user_input = input()
-        queue.put(user_input)
-    except Exception:
-        queue.put(None)
-
-
 def wait_for_enter_or_timeout(timeout):
     """
-	等待用户按回车键或超时后继续.
-	"""
+    等待用户按回车键或超时后继续.
+    """
     input_queue = Queue()
     input_thread = threading.Thread(target=input_with_timeout, args=(input_queue,))
     input_thread.daemon = True
@@ -162,19 +140,24 @@ def wait_for_enter_or_timeout(timeout):
     except Empty:
         return None  # 超时继续，不输出地址列表
 
+def input_with_timeout(queue):
+    """
+    等待用户输入，将输入结果放入队列.
+    """
+    try:
+        user_input = input()
+        queue.put(user_input)
+    except Exception:
+        queue.put(None)
 
 def main():
     try:
         while True:
             print_menu()
             choice = input("PS>")
-            # if choice == '0':
-            #     perform_action(choice)
-            #     break
             perform_action(choice)
     except KeyboardInterrupt:
         print("\n程序已退出.")
-
 
 if __name__ == "__main__":
     main()
