@@ -15,7 +15,7 @@ def scan_wifi(iface):
     """
     iface.scan()
     print("---扫描周围WiFi中---")
-    for _ in tqdm(range(5), desc="扫描进度", unit="s"):
+    for _ in tqdm(range(30), desc="扫描进度", unit="s"):
         time.sleep(1)
     wifi_list = sorted(iface.scan_results(), key=lambda x: x.signal, reverse=True)  # 根据信号强度排序
     for idx, wifi in enumerate(wifi_list):
@@ -152,6 +152,7 @@ def crack_wifi():
         try:
             for pwd in tqdm(passwords, desc="破解进度", unit="password", leave=False):
                 if connect_to_wifi(iface, pwd.strip(), wifi_name):
+
                     print(f"破解成功，密码为: {pwd.strip()}")
                     break
             else:
