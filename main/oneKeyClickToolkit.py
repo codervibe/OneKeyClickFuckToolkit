@@ -1,4 +1,4 @@
-from oneKeyClickFuckServer import informationcollection
+from onekeyclickfuckserver import informationcollection
 from onekeyclickfucksatellite import onekeyclickfucksatellite
 from wifi_cracker import crack_wifi
 
@@ -50,10 +50,10 @@ def perform_daily_server():
     执行一键日服务器.
     """
     try:
-        # print("正在执行一键日服务器...")
+        print("正在执行一键日服务器...")
         # simulate_progress_bar("一键日服务器", 89)
-        # print("一键日服务器完成!\n")
         informationcollection()
+        print("一键日服务器完成!\n")
     except KeyboardInterrupt:
         print("\n程序被中断.")
         exit()
