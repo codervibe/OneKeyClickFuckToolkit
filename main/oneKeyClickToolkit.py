@@ -80,12 +80,14 @@ def perform_scan_and_select_satellite():
         print("\n程序被中断.")
         exit()
 
+
 def crack_wifihandshake():
     try:
         crack_wifi_handshake()
     except KeyboardInterrupt:
         print("\n程序被中断.")
         exit()
+
 
 if __name__ == "__main__":
     main()
