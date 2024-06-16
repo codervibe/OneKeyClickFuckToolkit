@@ -1,6 +1,7 @@
-from onekeyclickfuckserver import informationcollection
-from onekeyclickfucksatellite import onekeyclickfucksatellite
-from wifi_cracker import crack_wifi
+from utils.onekeyclickfuckserver import informationcollection
+from utils.onekeyclickfucksatellite import onekeyclickfucksatellite
+from utils.wifi_cracker import crack_wifi
+from utils.crack_wifi_handshake import crack_wifi_handshake
 
 
 def print_menu():
@@ -25,6 +26,8 @@ def perform_action(choice):
             perform_daily_server()
         elif choice == '3':
             crack_wifi_main()
+        elif choice == '4':
+            crack_wifihandshake()
         elif choice == '0':
             print("退出程序.")
             exit()
@@ -77,6 +80,12 @@ def perform_scan_and_select_satellite():
         print("\n程序被中断.")
         exit()
 
+def crack_wifihandshake():
+    try:
+        crack_wifi_handshake()
+    except KeyboardInterrupt:
+        print("\n程序被中断.")
+        exit()
 
 if __name__ == "__main__":
     main()
