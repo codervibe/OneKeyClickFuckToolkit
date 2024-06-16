@@ -1,9 +1,11 @@
 import os
-import time
 import platform
 import subprocess
+import time
+
 from pywifi import PyWiFi, const, Profile
 from tqdm import tqdm
+
 
 def start_wpa_supplicant(interface):
     """
@@ -22,6 +24,7 @@ def start_wpa_supplicant(interface):
     except Exception as e:
         print(f"无法启动 wpa_supplicant: {e}")
 
+
 def scan_wifi(iface):
     """
     扫描周围的WiFi并显示进度条。
@@ -38,10 +41,14 @@ def scan_wifi(iface):
         time.sleep(1)
     wifi_list = sorted(iface.scan_results(), key=lambda x: x.signal, reverse=True)  # 根据信号强度排序
     for idx, wifi in enumerate(wifi_list):
-        ssid = wifi.ssid.encode("raw_unicode_escape").decode()
+        try:
+            ssid = wifi.ssid.encode("raw_unicode_escape").decode("utf-8", errors="ignore")
+        except UnicodeDecodeError:
+            ssid = wifi.ssid.encode("raw_unicode_escape").decode("latin-1", errors="ignore")
         signal_strength = str(wifi.signal + 100) + "%"
         print(f"{idx + 1}. WiFi名称: {ssid}, 信号强度: {signal_strength}")
     return wifi_list
+
 
 def connect_to_wifi(iface, password, ssid):
     """
@@ -74,6 +81,7 @@ def connect_to_wifi(iface, password, ssid):
     except Exception as e:
         print(f"连接失败: {e}")
         return False
+
 
 def select_interface(wifi):
     """
@@ -109,6 +117,7 @@ def select_interface(wifi):
         except ValueError:
             print("请输入有效的数字序号。")
 
+
 def get_default_password_file():
     """
     获取默认的密码文件路径，根据操作系统选择默认文件名。
@@ -120,6 +129,7 @@ def get_default_password_file():
         return os.path.join(os.path.dirname(__file__), "密码本.txt")
     else:
         return os.path.join(os.path.expanduser("~"), "密码本.txt")
+
 
 def crack_wifi():
     """
@@ -155,7 +165,7 @@ def crack_wifi():
         if wifi_selection.isdigit():
             wifi_index = int(wifi_selection) - 1
             if 0 <= wifi_index < len(wifi_list):
-                wifi_name = wifi_list[wifi_index].ssid.encode("raw_unicode_escape").decode()
+                wifi_name = wifi_list[wifi_index].ssid.encode("raw_unicode_escape").decode("utf-8", errors="ignore")
             else:
                 print("输入的序号无效，请重新运行程序并输入有效的序号。")
                 return
@@ -176,7 +186,7 @@ def crack_wifi():
         else:
             password_file = get_default_password_file()
 
-        with open(password_file, "r") as f:
+        with open(password_file, "r", encoding="latin-1") as f:
             passwords = f.readlines()
 
         try:
@@ -193,4 +203,3 @@ def crack_wifi():
 
     except KeyboardInterrupt:
         print("\n程序已终止。")
-
