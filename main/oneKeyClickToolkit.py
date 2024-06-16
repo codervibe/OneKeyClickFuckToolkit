@@ -12,6 +12,7 @@ def print_menu():
     print("1. 一键日卫星")
     print("2. 一键日服务器")
     print("3. 一键破解wifi")
+    print("4. 破解wifi握手包")
     print("0. 退出")
 
 
