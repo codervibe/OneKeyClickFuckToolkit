@@ -1,10 +1,9 @@
+import hashlib  # 导入哈希库，用于密码哈希和PTK计算
+import hmac  # 导入HMAC库，用于MIC验证
 import os  # 导入操作系统相关功能，用于路径检查和其他操作系统交互
 import platform  # 导入平台相关功能，用于检测操作系统类型
 import subprocess  # 导入子进程管理功能，用于执行系统命令
 import sys  # 导入系统相关功能，用于退出程序
-import hashlib  # 导入哈希库，用于密码哈希和PTK计算
-import hmac  # 导入HMAC库，用于MIC验证
-from binascii import a2b_hex  # 导入binascii库，用于十六进制字符串转换
 
 try:
     from scapy.all import rdpcap, EAPOL, Dot11Beacon, Dot11Elt, Raw  # 尝试导入Scapy库

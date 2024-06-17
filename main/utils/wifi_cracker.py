@@ -5,7 +5,7 @@ import time
 
 from pywifi import PyWiFi, const, Profile
 from tqdm import tqdm
-
+from utils import getsTheRequiredFilesInResource
 
 def start_wpa_supplicant(interface):
     """
@@ -188,7 +188,7 @@ def crack_wifi():
                 print("密码本文件不存在，请检查路径是否正确。")
                 return
         else:
-            password_file = get_default_password_file()
+            password_file = getsTheRequiredFilesInResource('密码本.txt')
 
         with open(password_file, "r", encoding="latin-1") as f:
             passwords = f.readlines()

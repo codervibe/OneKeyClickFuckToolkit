@@ -2,7 +2,7 @@ import json
 import os
 import platform
 import requests
-
+from utils import getsTheRequiredFilesInResource
 
 def get_http_headers(url):
     """
@@ -69,7 +69,7 @@ def cmsFingerprintRecognition():
 
     # 构建指纹文件的路径
 
-    fingerprints_file = get_fingerprints_file()
+    fingerprints_file = getsTheRequiredFilesInResource('cms_fingerprints.json')
 
     headers = get_http_headers(url)
     if headers is None:

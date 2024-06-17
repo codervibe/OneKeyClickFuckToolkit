@@ -1,4 +1,4 @@
-from utils.progressbar import simulate_progress_bar
+from utils import simulate_progress_bar
 import socket
 from tqdm import tqdm
 
