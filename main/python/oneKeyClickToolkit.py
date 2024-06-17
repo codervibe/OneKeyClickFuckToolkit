@@ -9,9 +9,6 @@ def print_menu():
     print("\n请选择一个操作:")
     print("1. 一键日卫星")
     print("2. 一键日服务器")
-    print("3. 一键破解wifi")
-    print("4. 破解wifi握手包")
-    print("5. 一键CMS指纹识别")
     print("0. 退出")
 
 
