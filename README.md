@@ -16,9 +16,6 @@ python .\main\oneKeyClickToolkit.py
 请选择一个操作:
 1. 一键日卫星
 2. 一键日服务器
-3. 一键破解wifi
-4. 破解wifi握手包
-5. 一键CMS指纹识别
 0. 退出
 PS>1
 扫描当前可用的地址...
