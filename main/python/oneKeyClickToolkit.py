@@ -1,8 +1,6 @@
-from crack_wifi_handshake import crack_wifi_handshake
 from onekeyclickfucksatellite import onekeyclickfucksatellite
 from onekeyclickfuckserver import informationcollection
-from wifi_cracker import crack_wifi
-from CMSIdentifier import cmsFingerprintRecognition
+
 
 def print_menu():
     """
@@ -52,13 +50,6 @@ def main():
         print("\n程序已退出.")
 
 
-def oneClickFingerprintRecognition():
-    try:
-        cmsFingerprintRecognition()
-    except KeyboardInterrupt:
-        print("\n程序已退出.")
-
-
 def perform_daily_server():
     """
     执行一键日服务器.
@@ -73,28 +64,9 @@ def perform_daily_server():
         exit()
 
 
-def crack_wifi_main():
-    """
-    执行一键破解wifi.
-    """
-    try:
-        crack_wifi()
-    except KeyboardInterrupt:
-        print("\n程序被中断.")
-        exit()
-
-
 def perform_scan_and_select_satellite():
     try:
         onekeyclickfucksatellite()
-    except KeyboardInterrupt:
-        print("\n程序被中断.")
-        exit()
-
-
-def crack_wifihandshake():
-    try:
-        crack_wifi_handshake()
     except KeyboardInterrupt:
         print("\n程序被中断.")
         exit()
