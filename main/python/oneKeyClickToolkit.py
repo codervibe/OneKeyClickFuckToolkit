@@ -1,9 +1,8 @@
-from main.python.CMSIdentifier import cmsFingerprintRecognition
-from main.python.crack_wifi_handshake import crack_wifi_handshake
-from main.python.onekeyclickfucksatellite import onekeyclickfucksatellite
-from main.python.onekeyclickfuckserver import informationcollection
-from main.python.wifi_cracker import crack_wifi
-
+from crack_wifi_handshake import crack_wifi_handshake
+from onekeyclickfucksatellite import onekeyclickfucksatellite
+from onekeyclickfuckserver import informationcollection
+from wifi_cracker import crack_wifi
+from CMSIdentifier import cmsFingerprintRecognition
 
 def print_menu():
     """

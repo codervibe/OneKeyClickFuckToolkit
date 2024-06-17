@@ -4,7 +4,8 @@ import subprocess
 import time
 from pywifi import PyWiFi, const, Profile
 from tqdm import tqdm
-from utils import getsTheRequiredFilesInResource
+from util.simulateprogressbar import getsTheRequiredFilesInResource
+
 
 def start_wpa_supplicant(interface):
     """
@@ -115,7 +116,6 @@ def select_interface(wifi):
                 print("无效的选择，请输入列表中的有效序号。")
         except ValueError:
             print("请输入有效的数字序号。")
-
 
 
 def crack_wifi():

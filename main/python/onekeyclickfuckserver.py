@@ -1,9 +1,7 @@
-from utils import simulate_progress_bar
+from util.simulateprogressbar import simulate_progress_bar
 import socket
+
 from tqdm import tqdm
-
-
-
 
 
 def informationcollection():
@@ -76,6 +74,7 @@ def scanningport():
         print(f"开放端口: {open_ports}")
     else:
         print("未找到开放端口。")
+
 
 def getrealiP():
     """

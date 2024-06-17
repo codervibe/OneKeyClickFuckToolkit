@@ -1,7 +1,7 @@
-from utils import simulate_progress_bar
 import random
 import threading
 from queue import Queue, Empty
+from util.simulateprogressbar import simulate_progress_bar
 from tabulate import tabulate
 
 
@@ -76,5 +76,5 @@ def input_with_timeout(queue):
     try:
         user_input = input()
         queue.put(user_input)
-    except Exception:
+    except KeyboardInterrupt:
         queue.put(None)
