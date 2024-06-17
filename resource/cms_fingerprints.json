@@ -26,5 +26,105 @@
     "Wix": {
         "headers": ["x-wix-request-id"],
         "meta": ["wix"]
+    },
+    "BigCommerce": {
+        "headers": ["x-bigcache"],
+        "meta": ["bigcommerce"]
+    },
+    "SquareSpace": {
+        "headers": ["sq-website-id"],
+        "meta": ["squarespace"]
+    },
+    "TYPO3": {
+        "headers": ["typo3"],
+        "meta": ["generator\" content=\"TYPO3"]
+    },
+    "OpenCart": {
+        "headers": ["opencart"],
+        "meta": ["opencart"]
+    },
+    "DrupalCommerce": {
+        "headers": ["drupal-commerce"],
+        "meta": ["generator\" content=\"Drupal Commerce"]
+    },
+    "Ghost": {
+        "headers": ["x-ghost-cache-status"],
+        "meta": ["ghost"]
+    },
+    "Umbraco": {
+        "headers": ["x-umbraco-debug"],
+        "meta": ["umbraco"]
+    },
+    "Pimcore": {
+        "headers": ["pimcore"],
+        "meta": ["pimcore"]
+    },
+    "MODX": {
+        "headers": ["modx"],
+        "meta": ["generator\" content=\"MODX"]
+    },
+    "OctoberCMS": {
+        "headers": ["october-"],
+        "meta": ["generator\" content=\"OctoberCMS"]
+    },
+    "Squarespace": {
+        "headers": ["squarespace"],
+        "meta": ["squarespace"]
+    },
+    "CraftCMS": {
+        "headers": ["x-powered-by"],
+        "meta": ["craftcms"]
+    },
+    "SilverStripe": {
+        "headers": ["x-silverstripe-cache"],
+        "meta": ["silverstripe"]
+    },
+    "XenForo": {
+        "headers": ["x-xenforo"],
+        "meta": ["generator\" content=\"XenForo"]
+    },
+    "Blogger": {
+        "headers": ["x-blogger"],
+        "meta": ["blogger"]
+    },
+    "Movable Type": {
+        "headers": ["mt-"],
+        "meta": ["generator\" content=\"Movable Type"]
+    },
+    "Textpattern": {
+        "headers": ["x-textpattern"],
+        "meta": ["textpattern"]
+    },
+    "Concrete5": {
+        "headers": ["x-concrete5"],
+        "meta": ["concrete5"]
+    },
+    "Liferay": {
+        "headers": ["liferay"],
+        "meta": ["liferay"]
+    },
+    "ExpressionEngine": {
+        "headers": ["x-expressionengine"],
+        "meta": ["generator\" content=\"ExpressionEngine"]
+    },
+    "ProcessWire": {
+        "headers": ["x-processwire"],
+        "meta": ["generator\" content=\"ProcessWire"]
+    },
+    "Bolt": {
+        "headers": ["x-bolt"],
+        "meta": ["generator\" content=\"Bolt"]
+    },
+    "Kooboo": {
+        "headers": ["x-kooboo"],
+        "meta": ["kooboo"]
+    },
+    "Sitecore": {
+        "headers": ["x-sitecore-siteid"],
+        "meta": ["sitecore"]
+    },
+    "vBulletin": {
+        "headers": ["x-vbulletin"],
+        "meta": ["generator\" content=\"vBulletin"]
     }
 }
