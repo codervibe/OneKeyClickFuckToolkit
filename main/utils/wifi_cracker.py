@@ -126,11 +126,15 @@ def get_default_password_file():
     str: 密码文件路径
     """
     if platform.system() == "Windows":
-        return os.path.join(os.path.dirname(__file__), "密码本.txt")
+        # 获取当前脚本文件的绝对路径
+        # 进入到resource文件夹
+        resource_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'resource')
+        # 指纹文件的路径
+        password_file = os.path.join(resource_folder, '密码本.txt')
+        return password_file
     else:
-        return os.path.join(os.path.expanduser("~"), "密码本.txt")
-
-
+        password_file = os.path.join(os.path.expanduser("~"), '密码本.txt')
+        return password_file
 def crack_wifi():
     """
     破解WiFi的函数.

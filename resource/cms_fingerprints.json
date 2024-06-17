@@ -1,0 +1,30 @@
+{
+    "WordPress": {
+        "headers": ["wp-content", "wp-json"],
+        "meta": ["generator\" content=\"WordPress"]
+    },
+    "Joomla": {
+        "headers": ["joomla"],
+        "meta": ["generator\" content=\"Joomla"]
+    },
+    "Drupal": {
+        "headers": ["drupal"],
+        "meta": ["generator\" content=\"Drupal"]
+    },
+    "Magento": {
+        "headers": ["mage-"],
+        "meta": ["generator\" content=\"Magento"]
+    },
+    "PrestaShop": {
+        "headers": ["prestashop"],
+        "meta": ["generator\" content=\"PrestaShop"]
+    },
+    "Shopify": {
+        "headers": ["shopify"],
+        "meta": ["shopify"]
+    },
+    "Wix": {
+        "headers": ["x-wix-request-id"],
+        "meta": ["wix"]
+    }
+}

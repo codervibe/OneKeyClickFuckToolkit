@@ -2,7 +2,7 @@ from utils.onekeyclickfuckserver import informationcollection
 from utils.onekeyclickfucksatellite import onekeyclickfucksatellite
 from utils.wifi_cracker import crack_wifi
 from utils.crack_wifi_handshake import crack_wifi_handshake
-
+from utils.CMSIdentifier import cmsFingerprintRecognition
 
 def print_menu():
     """
@@ -13,6 +13,7 @@ def print_menu():
     print("2. 一键日服务器")
     print("3. 一键破解wifi")
     print("4. 破解wifi握手包")
+    print("5. 一键CMS指纹识别")
     print("0. 退出")
 
 
@@ -29,6 +30,8 @@ def perform_action(choice):
             crack_wifi_main()
         elif choice == '4':
             crack_wifihandshake()
+        elif choice == '5':
+            oneClickFingerprintRecognition()
         elif choice == '0':
             print("退出程序.")
             exit()
@@ -48,6 +51,11 @@ def main():
     except KeyboardInterrupt:
         print("\n程序已退出.")
 
+def oneClickFingerprintRecognition():
+    try:
+        cmsFingerprintRecognition()
+    except KeyboardInterrupt:
+        print("\n程序已退出.")
 
 def perform_daily_server():
     """
