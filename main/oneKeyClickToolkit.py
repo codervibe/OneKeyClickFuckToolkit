@@ -1,8 +1,9 @@
-from utils.onekeyclickfuckserver import informationcollection
-from utils.onekeyclickfucksatellite import onekeyclickfucksatellite
-from utils.wifi_cracker import crack_wifi
-from utils.crack_wifi_handshake import crack_wifi_handshake
-from utils.CMSIdentifier import cmsFingerprintRecognition
+from main.python.CMSIdentifier import cmsFingerprintRecognition
+from main.python.crack_wifi_handshake import crack_wifi_handshake
+from main.python.onekeyclickfucksatellite import onekeyclickfucksatellite
+from main.python.onekeyclickfuckserver import informationcollection
+from main.python.wifi_cracker import crack_wifi
+
 
 def print_menu():
     """
@@ -51,11 +52,13 @@ def main():
     except KeyboardInterrupt:
         print("\n程序已退出.")
 
+
 def oneClickFingerprintRecognition():
     try:
         cmsFingerprintRecognition()
     except KeyboardInterrupt:
         print("\n程序已退出.")
+
 
 def perform_daily_server():
     """

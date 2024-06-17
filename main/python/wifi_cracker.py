@@ -2,7 +2,6 @@ import os
 import platform
 import subprocess
 import time
-
 from pywifi import PyWiFi, const, Profile
 from tqdm import tqdm
 from utils import getsTheRequiredFilesInResource
@@ -118,23 +117,7 @@ def select_interface(wifi):
             print("请输入有效的数字序号。")
 
 
-def get_default_password_file():
-    """
-    获取默认的密码文件路径，根据操作系统选择默认文件名。
 
-    返回:
-    str: 密码文件路径
-    """
-    if platform.system() == "Windows":
-        # 获取当前脚本文件的绝对路径
-        # 进入到resource文件夹
-        resource_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'resource')
-        # 指纹文件的路径
-        password_file = os.path.join(resource_folder, '密码本.txt')
-        return password_file
-    else:
-        password_file = os.path.join(os.path.expanduser("~"), '密码本.txt')
-        return password_file
 def crack_wifi():
     """
     破解WiFi的函数.
