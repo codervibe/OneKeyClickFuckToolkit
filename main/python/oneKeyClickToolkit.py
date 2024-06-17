@@ -24,12 +24,6 @@ def perform_action(choice):
             perform_scan_and_select_satellite()
         elif choice == '2':
             perform_daily_server()
-        elif choice == '3':
-            crack_wifi_main()
-        elif choice == '4':
-            crack_wifihandshake()
-        elif choice == '5':
-            oneClickFingerprintRecognition()
         elif choice == '0':
             print("退出程序.")
             exit()
