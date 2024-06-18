@@ -180,7 +180,43 @@ def print_menu():
     print("13. 一键日教务系统")
     print("14. 一键社工管理员全家")
     print("15. 一键DDOS")
+    print("16. 一键让对方拉稀")
     print("0. 退出")
+
+
+def 一键让对方拉稀():
+    try:
+        # print("正在执行一键日服务器...")
+        simulate_progress_bar("正在监听对方外卖地址", 89)
+        simulate_progress_bar("正在监听拦截外卖小哥", 89)
+        simulate_progress_bar("正在给外卖下药", 89)
+        simulate_progress_bar("正在将外卖正常送达", 89)
+        print("对方已经拉稀!\n")
+        print("任务完成!\n")
+    except KeyboardInterrupt:
+        print("\n程序被中断.")
+        exit()
+
+
+def 一键支付宝充值100万():
+    try:
+        # print("正在执行一键日服务器...")
+        simulate_progress_bar("正在破解支付宝系统", 89)
+        simulate_progress_bar("正在绕过防火墙", 289)
+        simulate_progress_bar("正在破解防护系统", 489)
+        simulate_progress_bar("正在反击", 689)
+        simulate_progress_bar("正在隐藏自己的位置", 189)
+        simulate_progress_bar("正在破解密码", 489)
+        simulate_progress_bar("正在尝试修改钱包余额", 49)
+        print("修改成功!\n")
+        simulate_progress_bar("正在删除操作日志", 189)
+        simulate_progress_bar("正在删除代理服务器操作日志", 189)
+        print("任务完成!\n")
+    except KeyboardInterrupt:
+        print("\n程序被中断.")
+        exit()
+
+
 def perform_action(choice):
     """
     根据用户选择执行相应的操作.
@@ -216,6 +252,10 @@ def perform_action(choice):
             一键社工管理员全家()
         elif choice == '15':
             一键DDOS()
+        elif choice == '16':
+            一键让对方拉稀()
+        elif choice == '17':
+            一键支付宝充值100万()
         elif choice == '0':
             print("退出程序.")
             exit()
