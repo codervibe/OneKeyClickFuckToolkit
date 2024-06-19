@@ -8,11 +8,16 @@ def informationcollection():
     """
     信息收集
     """
-    scanningport()
-    getrealiP()
-    scansegmentcoftheServer()
-    collectsubdomainnameinformation()
-    return
+    try:
+        scanningport()
+        getrealiP()
+        scansegmentcoftheServer()
+        collectsubdomainnameinformation()
+    except KeyboardInterrupt:
+        print("\n\033[91m程序被中断.\033[0m")
+        exit()
+
+    # return
 
 
 def scanningport():

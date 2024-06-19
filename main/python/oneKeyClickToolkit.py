@@ -1,6 +1,9 @@
-import time
-import random
-import sys
+from GUIFuckToolkit import create_gui
+from onekeyclickfucksatellite import onekeyclickfucksatellite
+from onekeyclickfuckserver import informationcollection
+from util.simulateprogressbar import simulate_progress_bar
+
+
 def print_banner():
     banner = r"""
  _       __     __                              __    
@@ -11,26 +14,27 @@ def print_banner():
         """
     print(banner)
 
-def simulate_progress_bar(task_name, duration):
+
+def 一键日服务器():
     """
-    模拟一个进度条的函数。
+    执行一键日服务器.
     """
-    toolbar_width = 40
+    try:
+        print("正在执行一键日服务器...")
+        informationcollection()
+        print("\033[92m一键日服务器完成!\033[0m\n")
+    except KeyboardInterrupt:
+        print("\n\033[91m程序被中断.\033[0m")
+        exit()
 
-    # 设置进度条
-    sys.stdout.write(f"{task_name}: [{' ' * toolbar_width}]")
-    sys.stdout.flush()
-    sys.stdout.write("\b" * (toolbar_width + 1))  # 返回到开始位置
 
-    for i in range(toolbar_width):
-        time.sleep(duration / toolbar_width / 10)
-        # 通过彩色输出增加花里胡哨的效果
-        color = random.choice(['\033[91m', '\033[92m', '\033[93m', '\033[94m', '\033[95m'])
-        char = random.choice(['█'])
-        sys.stdout.write(f"{color}{char}\033[0m")
-        sys.stdout.flush()
+def 一键日卫星():
+    try:
+        onekeyclickfucksatellite()
+    except KeyboardInterrupt:
+        print("\n\033[91m程序被中断.\033[0m")
+        exit()
 
-    sys.stdout.write("]\n")
 
 def 一键顺着网线砍人():
     try:
@@ -227,9 +231,9 @@ def perform_action(choice):
     """
     try:
         if choice == '1':
-            perform_scan_and_select_satellite()
+            一键日卫星()
         elif choice == '2':
-            perform_daily_server()
+            一键日服务器()
         elif choice == '3':
             一键顺着网线砍人()
         elif choice == '4':
@@ -264,42 +268,45 @@ def perform_action(choice):
             print("退出程序.")
             exit()
         else:
-            print("\033[91m无效选择，请重新选择.\033[0m")
+            print("无效选择，请重新选择.")
     except KeyboardInterrupt:
-        print("\n\033[91m程序被用户中断.\033[0m")
+        print("\n程序被用户中断.")
         exit()
 
 
 def main():
     print_banner()
     try:
-        while True:
-            print_menu()
-            choice = input("PS> ")
-            perform_action(choice)
+        global use_gui
+        use_gui = prompt_user_for_interface()
+
+        if use_gui:
+            create_gui()
+        else:
+            while True:
+                print_menu()
+                choice = input("PS> ")
+                perform_action(choice)
     except KeyboardInterrupt:
-        print("\n\033[91m程序已退出.\033[0m")
+        print("\n\033{91m程序已退出.\033[0m")
 
 
-def perform_daily_server():
+def prompt_user_for_interface():
     """
-    执行一键日服务器.
+    提示用户选择界面类型，命令行或者图形界面.
     """
-    try:
-        print("正在执行一键日服务器...")
-        informationcollection()
-        print("\033[92m一键日服务器完成!\033[0m\n")
-    except KeyboardInterrupt:
-        print("\n\033[91m程序被中断.\033[0m")
-        exit()
+    while True:
+        print("\n请选择一个界面:")
+        print("1. 命令行界面")
+        print("2. 图形界面")
+        choice = input("请选择: ")
 
-
-def perform_scan_and_select_satellite():
-    try:
-        onekeyclickfucksatellite()
-    except KeyboardInterrupt:
-        print("\n\033[91m程序被中断.\033[0m")
-        exit()
+        if choice == '1':
+            return False
+        elif choice == '2':
+            return True
+        else:
+            print("无效选择，请重新选择.\n")
 
 
 if __name__ == "__main__":
