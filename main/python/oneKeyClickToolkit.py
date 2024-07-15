@@ -310,4 +310,5 @@ def prompt_user_for_interface():
 
 
 if __name__ == "__main__":
+    # 执行主函数
     main()
